@@ -1,0 +1,4 @@
+interface:
+  display_name: "ad-xuanhuan-engine｜玄幻打戏"
+  short_description: "设计玄幻斗法、飞剑法阵与大场面，保持尺度、元素材质、攻防因果和剧情结果"
+  default_prompt: "使用 $ad-xuanhuan-engine 设计我提供场景的玄幻打戏，保持能力、胜负与伤势，未指定时长时先询问。"

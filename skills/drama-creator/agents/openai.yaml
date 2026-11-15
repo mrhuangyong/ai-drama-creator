@@ -1,0 +1,4 @@
+interface:
+  display_name: "drama-creator｜漫剧创作总控"
+  short_description: "串联小说改编、资产提取和分镜提示词，自动为打斗场景调用通用或玄幻打戏推理"
+  default_prompt: "使用 $drama-creator 将我提供的故事或已有剧本推进为漫剧剧本、资产资料与最终分镜提示词，按实际阶段接续并自动处理打戏。"

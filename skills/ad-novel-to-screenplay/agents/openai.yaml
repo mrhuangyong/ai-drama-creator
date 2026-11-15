@@ -1,0 +1,4 @@
+interface:
+  display_name: "ad-novel-to-screenplay｜小说改编剧本"
+  short_description: "适配短篇、网文与长篇小说，保留原著内核，改编为可制作的中文漫剧剧本"
+  default_prompt: "使用 $ad-novel-to-screenplay 将我提供的小说改编为剧本，按篇幅组织阅读和分集。"

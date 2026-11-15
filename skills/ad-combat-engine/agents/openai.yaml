@@ -1,0 +1,4 @@
+interface:
+  display_name: "ad-combat-engine｜通用打戏"
+  short_description: "从剧本直接设计通用武侠和写实打戏，明确发力、攻防反馈、空间轴线与收束"
+  default_prompt: "使用 $ad-combat-engine 设计我提供场景的打斗动作和分镜，保留原剧情结果，未指定时长时先询问。"

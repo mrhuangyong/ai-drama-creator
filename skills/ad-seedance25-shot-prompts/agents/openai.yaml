@@ -1,0 +1,4 @@
+interface:
+  display_name: "ad-seedance25-shot-prompts｜分镜提示词"
+  short_description: "将剧本转换为十五秒或三十秒分镜提示词，保留对白、动作与跨段连续性"
+  default_prompt: "使用 $ad-seedance25-shot-prompts 将我提供的剧本转换为Seedance 2.5分镜提示词，未选择时长时先询问。"

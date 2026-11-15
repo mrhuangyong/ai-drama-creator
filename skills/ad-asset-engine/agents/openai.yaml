@@ -1,0 +1,4 @@
+interface:
+  display_name: "ad-asset-engine｜资产提取"
+  short_description: "提取人物场景道具，输出生图提示词、跨集状态与素材接线单，人物图顶部仅写角色名"
+  default_prompt: "使用 $ad-asset-engine 从我提供的剧本提取资产，沿用画风与人物状态，输出生图提示词及素材接线单。"
