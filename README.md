@@ -15,25 +15,26 @@
 
 专业技能统一以 `ad-` 开头，入口按指定保留 `drama-creator`。五个专业技能可独立使用；总控需要它们与自己处于同一父目录。
 
-## 下载和安装
+## 克隆安装
 
-下载 [v1.0.0 完整技能包](dist/ai-drama-creator-v1.0.0.zip)，或克隆仓库：
-
-```bash
-git clone https://github.com/mrhuangyong/ai-drama-creator.git
-cd ai-drama-creator
-```
-
-将 `skills/` 里面的**六个技能文件夹**复制到 Codex 的技能目录，默认是 `~/.codex/skills/`。保持六者同级，不能只复制总控，也不要把 `skills` 整体作为一个技能文件夹。已有同名技能时先核对并备份自己的修改，再更新文件。
-
-首次安装的示例命令（会复制六个目录，执行前确认目标没有需要保留的同名版本）：
+首次安装时，将仓库克隆到本地，再把六个技能链接到 Codex 技能目录。
 
 ```bash
-mkdir -p ~/.codex/skills
-cp -R skills/drama-creator skills/ad-* ~/.codex/skills/
+mkdir -p ~/.agents/skills ~/.codex/skills
+git clone https://github.com/mrhuangyong/ai-drama-creator.git ~/.agents/skills/ai-drama-creator
+cd ~/.agents/skills/ai-drama-creator
+for skill in skills/drama-creator skills/ad-*; do
+  ln -s "$PWD/$skill" "$HOME/.codex/skills/${skill##*/}"
+done
 ```
 
-安装后重新打开使用技能的会话；支持直接读取本地技能文件的客户端，也可指定 `skills/drama-creator/SKILL.md` 的完整路径。这里只安装文本规则和本地检查脚本，不配置视频供应商或收费服务。
+如果目标目录已有同名技能，先检查并备份旧版本，再建立对应链接。安装后重新打开会话，使用 `$drama-creator` 启动工作流。
+
+已按上述方式安装时，更新只需拉取仓库，软链接会指向更新后的技能文件。
+
+```bash
+git -C ~/.agents/skills/ai-drama-creator pull --ff-only
+```
 
 ## 使用示例
 
@@ -70,18 +71,15 @@ cp -R skills/drama-creator skills/ad-* ~/.codex/skills/
 
 默认交付 Markdown 剧本、资产清单及生图提示词、接线单、分集分镜文件与完整合集。技能本身不生成图片、视频、配音，不上传原小说。
 
-## 本地检查与重新打包
+## 本地检查
 
 Python 3.9及以上，无需额外Python依赖：
 
 ```bash
 python3 scripts/check.py
-python3 scripts/package.py
 ```
 
 检查包括六个技能的命名、总控引用、相对链接和55项现有测试。检查器验证文本结构、时长或配置；原著覆盖、动作因果、角色一致性和实际出片效果仍需人工核对，不能用测试通过代替成片验证。
-
-重新打包会生成 `dist/ai-drama-creator-v<版本>.zip` 与 SHA-256 校验文件。ZIP内含说明和完整 `skills/`，排除缓存、Git目录与本地项目材料。
 
 ## 来源
 
