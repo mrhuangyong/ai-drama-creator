@@ -23,7 +23,7 @@ def validate(text):
         require(not re.search(r'〔[^〕]+〕', body), '仍有未填占位符')
         if '【角色四格设定图】' in body:
             require(bool(re.search(r'全图共\s*4\s*格', body)), '角色必须显式四格')
-            for token in ('面部特写', '正面全身', '90°侧面', '背面全身', '无脸', '头顶至鞋', '五官10项', '声纹波形', 'fifth panel', 'different face'):
+            for token in ('面部特写', '正面全身', '90°侧面', '背面全身', '无脸', '头顶至鞋', '五官10项', '声纹波形', '音色速览标签', 'fifth panel', 'different face'):
                 require(token in body, '角色缺少：' + token)
             require(bool(re.search(r'Voice Description(?! Label)', section)), '缺少代码块外完整英文音色文本')
             title = re.search(r'画面正上方居中写着唯一文字[：:]\s*[“"]([^”"\n]+)[”"]', body)
@@ -31,7 +31,9 @@ def validate(text):
             if title:
                 require(title.group(1).strip() not in ('角色名称', '实际角色名称', '角色名', '姓名'), '角色名仍是占位符')
             require('绝对禁止输出任何其他英文字母、乱码或多余文字' in body, '缺少角色名以外的文字禁令')
-            require('图底音色速览标签' not in body, '英文音色短标签须留在图外')
+            require('图底音色速览标签' in body, '缺少图底音色速览标签（≤8词英文，须照抄图外Label渲染入图）')
+            require(not re.search(r'character names|禁止(?:出现|输出|标注|渲染)?(?:人物名|角色名)|不标人物名', body, re.I), '存在禁止角色名称入图的冲突约束')
+            require(not re.search(r'短标签(?:不进图|不入图|仅在图外|不渲染)', body), '音色短标签须渲染入图，不得写为不进图')
             require(not re.search(r'character names|禁止(?:出现|输出|标注|渲染)?(?:人物名|角色名)|不标人物名', body, re.I), '存在禁止角色名称入图的冲突约束')
         elif '【道具设定图】' in body:
             require(bool(re.search(r'全图共\s*4\s*格', body)), '道具必须显式四格')
